@@ -1,0 +1,6 @@
+.itemrow {
+    display: block;
+}
+.itemrow > span {
+    margin: 1em;
+}
