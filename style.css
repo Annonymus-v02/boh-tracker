@@ -78,7 +78,7 @@ body {
     grid-template-columns: 1fr auto 1fr;
     border-bottom: 1px solid;
     border-color: inherit;
-    height: 2.5em;
+    /*height: 2.5em;*/
     align-content: center;
 }
 .reciperow > span {
