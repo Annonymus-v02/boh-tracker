@@ -4,7 +4,8 @@ const aspects = ['lantern', 'heart', 'forge', 'moth', 'grail', 'moon', 'sky', 'e
                  'scale', 'knock', 'rose',
                  'memory', 'sound', 'material', 'omen', 'mark', 'persistent', 'leaf', 'flower', 'beverage',
                  'sustenance', 'ink', 'pigment', 'glass', 'stone', 'metal', 'soul', 'skill', 'liquid', 'remains',
-                 'fabric', 'assistance', 'unknown', 'weather', 'fruit', 'root', 'tool', 'device', 'lens'];
+                 'fabric', 'assistance', 'unknown', 'weather', 'fruit', 'root', 'tool', 'device', 'lens', 'wood',
+                 'fuel'];
 const nonBinaryAspects = [
     'lantern', 'heart', 'forge', 'moth', 'grail', 'moon', 'sky', 'edge', 'winter', 'nectar',
     'scale', 'knock', 'rose'
@@ -134,6 +135,7 @@ let items = [
     new Item('Bunch of Grapes', '', {nectar: 1, sustenance: 1, fruit: 1}),
     new Item('Beeswax', '', {moth: 1, scale: 1, material: 1, fuel: 1}),
     new Item('Honey', '', {moth: 1, heart: 1, nectar: 1, sustenance: 1, liquid: 1}),
+    new Item('Cuckoo-Honey', '', {moth: 3, heart: 1, nectar: 2, scale: 3, edge: 2, sustenance: 1, liquid: 1}),
     new Item('Sack of Vegetables', '', {heart: 1, nectar: 1, sustenance: 1}),
     new Item('Xanthotic Essence', 'precursor to the Great Ink Uzult', {forge: 2, knock: 2, lantern: 5, liquid: 1, pigment: 1}),
     new Item('Leathy', 'precursor to a great ink', {grail: 2, nectar: 2, moth: 4, scale: 2, liquid: 1, beverage: 1}),
@@ -160,7 +162,21 @@ let items = [
     new Item('Musician', '', {sky: 4, rose: 4, nectar: 4, assistance: 1}),
     new Item('Surrealist Painter', 'Can use :pigment: pigments', {grail: 4, moth: 4, rose: 4, assistance: 1}),
     new Item('Fugitive', '', {scale: 4, edge: 4, heart: 4, assistance: 1}),
+    new Item('Gervinite', '', {knock: 4, rose: 2, material: 1, metal: 1}),
+    new Item('Orichalcum', '', {forge: 4, lantern: 1, material: 1, metal: 1}),
+    new Item('Wormwood Dream', 'has "evolve with nyctodromy" and "evolve with skolekosophy"', {winter: 6, moon: 6, edge: 3, memory: 1, omen: 1}),
+    new Item('Horizon-Sight', 'evolves Hushery', {rose: 4, memory: 1, persistent: 1}),
+    new Item('Phosphorescent Scrapings', '', {moon: 2, nectar: 2, remains: 1, material: 1}),
+    new Item('Sea-Glass', '', {moon: 1, lantern: 1, glass: 1, material: 1}),
+    new Item('Perilous Imago', '', {knock: 2, moon: 2, moth: 6, scale: 2, beast: 1}),
+    new Item('Hive\'s Lament', 'evolves Bosk', {moth: 2, nectar: 4, winter: 2, memory: 1, persistent: 1, sound: 1}),
 ];
+for (let item of items) {
+    for (let aspect in item.aspects) {
+        console.assert(aspects.includes(aspect));
+    }
+}
+
 /** @type [Recipe] */
 let recipes = [
     new Recipe('Solace', 'Talk with dog'),
@@ -170,6 +186,8 @@ let recipes = [
     new Recipe('Earth-Sign', 'Talk with snake'),
     new Recipe('Fear', 'Talk with Chimeric Larva'),
     new Recipe('Gossip', 'Talk with Cockatoo'),
+    new Recipe('Horizon-Sight', 'Talk with Stymphling'),
+    new Recipe('Hive\'s Lament', 'Talk with Perilous Imago'),
     new Recipe('Taste', 'Drink (or eat?)'),
     new Recipe('Touch', 'Inspect cat'),
     new Recipe('Touch', 'Analyze quartz'),
@@ -217,6 +235,7 @@ let recipes = [
     new Recipe('Sack of Vegetables', 'Kitchen Garden in Summer and Autumn'),
     new Recipe('Beeswax', 'Beehive'),
     new Recipe('Honey', 'Beehive'),
+    new Recipe('Cuckoo-Honey', 'Beehive in Numa'),
     new Recipe('Regret', 'Beehive in Winter'),
     new Recipe('Orchard-Keeper', '1 Shilling in Autumn'),
     new Recipe('Elegiac Poet', '2 Shillings'),
@@ -225,6 +244,8 @@ let recipes = [
     new Recipe('Pyrus Auricalcinus', 'Practic Garden in Numa'),
     new Recipe('Musician', '2 Shillings'),
     new Recipe('Surrealist Painter', '2 Shillings'),
+    new Recipe('Phosphorescent Scrapings', 'Sea-Caves'),
+    new Recipe('Sea-Glass', 'Sea-Caves'),
     
     new CraftingRecipe('Eigengrau', 'Quenchings & Quellings', 'winter', 5),
     new CraftingRecipe('Solomon\'s Preparation', 'Quenchings & Quellings', 'winter', 10, 'and a :flower: flower'),
@@ -313,7 +334,6 @@ let recipes = [
     new CraftingRecipe('...nothing?', 'Transformations & Liberations', 'moth', 5),
     new CraftingRecipe('Tanglebrag', 'Resurgences & Emergences', 'moth', 5),
     new CraftingRecipe('Secret Threshold', 'Horns & Ivories', 'knock', 5),
-    new CraftingRecipe('Secret Threshold', 'Preliminal Meter', 'knock', 5),
     new CraftingRecipe('Amethyst Ampoule', 'Surgeries & Exsanguinations', 'knock', 5),
     new CraftingRecipe('Glassfinger Toxin', 'Surgeries & Exsanguinations', 'knock', 10, 'and a :liquid: liquid'),
     new CraftingRecipe('Torgue\'s Cleansing', 'Meniscate Reflections', 'edge', 5),
@@ -350,6 +370,7 @@ let recipes = [
     new CraftingRecipe('Wistful Air', 'Watchman\'s Paradoxes', 'sky', 5),
     new CraftingRecipe('Ichor Auroral', 'Watchman\'s Paradoxes', 'sky', 10, 'and a :light: light'),
     new CraftingRecipe('Confounding Parable', 'Preliminal Meter', 'rose', 5),
+    new CraftingRecipe('Secret Threshold', 'Preliminal Meter', 'knock', 5),
     new CraftingRecipe('Curious Hunch', 'Preliminal Meter', 'knock', 10, 'and a :memory: memory'),
     new CraftingRecipe('Bisclavret\'s Knot', 'Hill & Hollow', 'scale', 5),
     new CraftingRecipe('Bisclavret\'s Knot', 'Horns & Ivories', 'scale', 5),
@@ -391,6 +412,21 @@ let recipes = [
     new CraftingRecipe('Westcott\'s Compounds', 'Solutions & Separations', 'moth', 5),
     new CraftingRecipe('Nameday Riddle', 'Solutions & Separations', 'moth', 10, 'and a :memory: memory'),
     new CraftingRecipe('Confounding Parable', 'Tridesma Hiera', 'moon', 5),
+    new CraftingRecipe('Dearday Lens', 'Glassblowing & Vesselcrafting', 'lantern', 5),
+    new CraftingRecipe('Orichalcum', 'Glassblowing & Vesselcrafting', 'knock', 10, 'and :metal: metal'),
+    new CraftingRecipe('Amethyst Ampoule', 'Lockworks & Clockworks', 'knock', 5),
+    new CraftingRecipe('Gervinite', 'Lockworks & Clockworks', 'knock', 10, 'and :glass: glass'),
+    new CraftingRecipe('Midnight Mark', 'Snow Stories', 'moon', 5),
+    new CraftingRecipe('Midnight Mark', 'Sharps', 'moon', 5),
+    new CraftingRecipe('Essential Periost', 'Sharps', 'moon', 10, 'and :remains: remains'),
+    new CraftingRecipe('Midnight Mark', 'Desires & Dissolutions', 'moon', 5),
+    new CraftingRecipe('Pyrus Auricalcinus', 'Desires & Dissolutions', 'moon', 10, 'and :wood: wood'),
+    new CraftingRecipe('Beguiling Melody', 'Applebright Euphonies', 'grail', 5),
+    new CraftingRecipe('Rubywise Ruin', 'Applebright Euphonies', 'grail', 10, 'and a :flower: flower'),
+    new CraftingRecipe('Witching Tisane', 'Orchids & Narcotics', 'grail', 5),
+    new CraftingRecipe('Rubywise Ruin', 'Orchids & Narcotics', 'grail', 10, 'and a :flower: flower'),
+    new CraftingRecipe('Perilous Imago', 'Resurgences & Emergences', 'moth', 10, 'and a Chimeric Larva'),
+    new CraftingRecipe('Perilous Imago', 'Transformations & Liberations', 'moth', 10, 'and a Chimeric Larva'),
 
     new Recipe('Fear', 'Read Exorcism for Girls'),
     new Recipe('Foresight', 'Read Journal of Walter Dewulf'),
@@ -462,11 +498,54 @@ let recipes = [
     new Recipe('Confounding Parable', 'Read Moon\'s Egg'),
     new Recipe('Impulse', 'Read Ascite Supplications'),
     new Recipe('Confounding Parable', 'Read Snare of the Tree: Collected Proverbs of Aunt Mopsy (eye)'),
-    new Recipe('Solace', 'Read Notes on Binding'),
+    new Recipe('Solace', 'Read Notes on Bindings'),
     new Recipe('Solace', 'Read Rose of Hypatia'),
     new Recipe('Pattern', 'Read Elations of Limentinus'),
     new Recipe('Impulse', 'Read Debate of Seven Cups'),
     new Recipe('Bittersweet Certainty', 'Read Musgrave\'s Sketches'),
+    new Recipe('Pattern', 'Read OGHKOR OGHKOR TISSILAK OGHKOR'),
+    new Recipe('Satisfaction', 'Read Rose of Nuriel'),
+    new Recipe('Fear', 'Read One Thousand Threads'),
+    new Recipe('Pattern', 'Read Other Eye of the Serpent'),
+    new Recipe('Secret Threshold', 'Read Almanac of Entrances'),
+    new Recipe('Bittersweet Certainty', 'Read Black Book of Brittany'),
+    new Recipe('Satisfaction', 'Read Red Book of Brittany'),
+    new Recipe('Foresight', 'Watch Admonitory Automata Project'),
+    new Recipe('Revelation', 'Watch Open Head'),
+    new Recipe('Revelation', 'Watch Experiment Beyond Sight'),
+    new Recipe('Contradiction', 'Read Victory of Crowns'),
+    new Recipe('Salt', 'Read Journal of Thomas Dewulf'),
+    new Recipe('Regret', 'Read Fallen Cross'),
+    new Recipe('Pattern', 'Read On What is Contained by Silver'),
+    new Recipe('Intuition', 'Read Three and the Three (Vatican Manuscript)'),
+    new Recipe('Fear', 'Read Sun\'s Lament'),
+    new Recipe('A Stolen Secret', 'Read Account of Kanishk at the Spider\'s Door'),
+    new Recipe('Contradiction', 'Read As the Sun His Course'),
+    new Recipe('Bittersweet Certainty', 'Read Glimmerings'),
+    new Recipe('Impulse', 'Read On Thirstlies, Ivories and Lovelies'),
+    new Recipe('Beguiling Melody', 'Read Skeleton Songs'),
+    new Recipe('Fear', 'Read Tantra of Worms'),
+    new Recipe('Foresight', 'Read Incandescent Tantra'),
+    new Recipe('Cheerful Ditty', 'Hear Invisible Opera'),
+    new Recipe('Cheerful Ditty', 'Hear Opening the Sky'),
+    new Recipe('Fear', 'Read Encircling Tantra'),
+    new Recipe('Fear', 'Read Hunting Journals of Bryan Dewulf'),
+    new Recipe('Satisfaction', 'Read Wonderful Shape (3 knots)'),
+    new Recipe('Revelation', 'Read Locksmith\'s Dream 1'),
+    new Recipe('Confounding Parable', 'Read Locksmith\'s Dream 2'),
+    new Recipe('Impulse', 'Read Locksmith\'s Dream 3'),
+    new Recipe('Revelation', 'Read Locksmith\'s Dream 4'),
+    new Recipe('Confounding Parable', 'Read Locksmith\'s Dream 5'),
+    new Recipe('Earth-Sign', 'Read De Ratio Quercuum'),
+    new Recipe('A Stolen Secret', 'Hear An Investigation of A Foundered Country'),
+    new Recipe('A Stolen Secret', 'Hear Velletri Interviews'),
+    new Recipe('Beguiling Melody', 'Hear Lake Fucino Recordings'),
+    new Recipe('Intuition', 'Read History of Inks'),
+    new Recipe('Gossip', 'Read On Matthias and the Amethyst Imago: Pursuit'),
+    new Recipe('Impulse', 'Read Cucurbit Prisoner Records 1927'),
+    new Recipe('Impulse', 'Read Most Sorrowful End of the Lady Nonna'),
+    new Recipe('Impulse', 'Read Book of Masks'),
+    new Recipe('Intuition', 'Read Tripled Heart'),
 
     new Recipe('Beeswax Candle', 'Chandlery with wax'),
     new Recipe('Moth-Orchid-Scented Candle', 'Chandlery with wax and moth orchid'),
@@ -542,6 +621,14 @@ function doSearch (query) {
         let skillRecipes = recipes.filter(r => r instanceof CraftingRecipe && skillMatches.includes(r.skill))
                                   .filter(r => !Object.keys(reqs).filter(k => reqs[k] > 0)
                                                       .map(a => a === r.aspect).some(b => b === false));
+        skillRecipes.sort((/**CraftingRecipe*/a, /**CraftingRecipe*/ b) =>
+                              a.skill < b.skill       ? -1 :
+                              a.skill > b.skill       ?  1 :
+                              a.aspect < b.aspect     ? -1 :
+                              a.aspect > b.aspect     ?  1 :
+                              a.quantity < b.quantity ? -1 :
+                              a.quantity > b.quantity ?  1
+                                                      :  0)
 
         for (let skillRecipe of skillRecipes) {
             // noinspection JSCheckFunctionSignatures
