@@ -170,6 +170,7 @@ let items = [
     new Item('Sea-Glass', '', {moon: 1, lantern: 1, glass: 1, material: 1}),
     new Item('Perilous Imago', '', {knock: 2, moon: 2, moth: 6, scale: 2, beast: 1}),
     new Item('Hive\'s Lament', 'evolves Bosk', {moth: 2, nectar: 4, winter: 2, memory: 1, persistent: 1, sound: 1}),
+    new Item('Swaddled Thunder', '', {heart: 6, sky: 4, fabric: 1}),
 ];
 for (let item of items) {
     for (let aspect in item.aspects) {
@@ -427,6 +428,8 @@ let recipes = [
     new CraftingRecipe('Rubywise Ruin', 'Orchids & Narcotics', 'grail', 10, 'and a :flower: flower'),
     new CraftingRecipe('Perilous Imago', 'Resurgences & Emergences', 'moth', 10, 'and a Chimeric Larva'),
     new CraftingRecipe('Perilous Imago', 'Transformations & Liberations', 'moth', 10, 'and a Chimeric Larva'),
+    new CraftingRecipe('Swaddled Thunder', 'Drums & Dances', 'heart', 15, 'and Thunderskin\'s Paean'),
+    new CraftingRecipe('Hive\'s Lament', 'Drums & Dances', 'nectar', 10, 'at an :instrument: instrument'),
 
     new Recipe('Fear', 'Read Exorcism for Girls'),
     new Recipe('Foresight', 'Read Journal of Walter Dewulf'),
@@ -546,6 +549,17 @@ let recipes = [
     new Recipe('Impulse', 'Read Most Sorrowful End of the Lady Nonna'),
     new Recipe('Impulse', 'Read Book of Masks'),
     new Recipe('Intuition', 'Read Tripled Heart'),
+    new Recipe('Salt', 'Read Cucurbit Prisoner Records 1927'),
+    new Recipe('Hindsight', 'Read Seven Shards'),
+    new Recipe('Revelation', 'Read Secret Colours'),
+    new Recipe('Pattern', 'Read Radical Measure (glossed)'),
+    new Recipe('Contradiction', 'Read Book of Thrones'),
+    new Recipe('Fear', 'Read Deeds of the Scarred Captain'),
+    new Recipe('Fear', 'Read Book of the True Blood'),
+    new Recipe('Confounding Parable', 'Read Isaac of Karth\'s History of the Shadowless Kings'),
+    new Recipe('Hindsight', 'Read Nyn\'s Cages (avignon)'),
+    new Recipe('Regret', 'Read Wound-Wounds'),
+    new Recipe('Gossip', 'Read Three Flowers Hath the Tree'),
 
     new Recipe('Beeswax Candle', 'Chandlery with wax'),
     new Recipe('Moth-Orchid-Scented Candle', 'Chandlery with wax and moth orchid'),
