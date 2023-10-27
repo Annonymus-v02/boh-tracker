@@ -5,7 +5,7 @@ const aspects = ['lantern', 'heart', 'forge', 'moth', 'grail', 'moon', 'sky', 'e
                  'memory', 'sound', 'material', 'omen', 'mark', 'persistent', 'leaf', 'flower', 'beverage',
                  'sustenance', 'ink', 'pigment', 'glass', 'stone', 'metal', 'soul', 'skill', 'liquid', 'remains',
                  'fabric', 'assistance', 'unknown', 'weather', 'fruit', 'root', 'tool', 'device', 'lens', 'wood',
-                 'fuel', 'numen', 'beast', 'instrument', 'woven'];
+                 'fuel', 'numen', 'beast', 'instrument', 'woven', 'encaustum'];
 const nonBinaryAspects = [
     'lantern', 'heart', 'forge', 'moth', 'grail', 'moon', 'sky', 'edge', 'winter', 'nectar',
     'scale', 'knock', 'rose'
@@ -186,6 +186,11 @@ let items = [
     new Item('Sacrament Malachite', '', {nectar: 6, liquid: 1, beverage: 1}),
     new Item('Pale Mommet', '', {grail: 4, heart: 2, moth: 2, tool: 1, device: 1, woven: 1}),
     new Item('Flushed Mommet', '', {grail: 6, heart: 3, moth: 3, tool: 1, device: 1, woven: 1}),
+    new Item('Earthquake Name', 'evolves Ithastry and Skolekosophy', {scale: 6, forge: 3, memory: 1, persistent: 1, omen: 1}),
+    new Item('Stargall Ink', '', {sky: 2, liquid: 1, ink: 1}),
+    new Item('Houndsgall', '', {heart: 2, scale: 5, liquid: 1, ink: 1}),
+    new Item('Invincible Audacity', 'evolves Illumination and Ithastry', {edge: 6, forge: 3, lantern: 3, memory: 1, persistent: 1}),
+    new Item('Didumos', 'evolves Horomachistry and Hushery', {sky: 6, knock: 3, lantern: 3, winter: 3, memory: 1, persistent: 1}),
 ];
 for (let item of items) {
     for (let aspect in item.aspects) {
@@ -457,7 +462,6 @@ let recipes = [
     new CraftingRecipe('Thirza\'s Cordials', 'Coil & Chasm', 'nectar', 5),
     new CraftingRecipe('Thirza\'s Cordials', 'Spices & Savors', 'nectar', 5),
     new CraftingRecipe('Thirza\'s Cordials', 'Orchids & Narcotics', 'nectar', 5),
-    new CraftingRecipe('Yewgall Ink', 'Insects & Nectars', 'nectar', 5),
     new CraftingRecipe('Leathy', 'Insects & Nectars', 'nectar', 10, 'and a :beverage: beverage'),
     new CraftingRecipe('Mazarine Fife', 'Sacra Limiae', 'sky', 10, 'and :wood: wood'),
     new CraftingRecipe('Awakened Feather', 'Lockworks & Clockworks', 'sky', 5),
@@ -498,6 +502,26 @@ let recipes = [
     new CraftingRecipe('Leathy', 'Herbs & Infusions', 'nectar', 10, 'and a :beverage: beverage'),
     new CraftingRecipe('Sacrament Malachite', 'Herbs & Infusions', 'nectar', 15, 'and pyrus auricalcinus'),
     new CraftingRecipe('Flushed Mommet', 'Resurgences & Emergences', 'grail', 15, 'and a Pale Mommet'),
+    new CraftingRecipe('Earthquake Name', 'Hill & Hollow', 'scale', 15, 'and an Old Moment'),
+    new CraftingRecipe('Earthquake Name', 'Wolf Stories', 'scale', 15, 'and an Old Moment'),
+    new CraftingRecipe('Stargall Ink', 'Inks of Power', 'sky', 5),
+    new CraftingRecipe('Houndsgall', 'Pentiments & Precursors', 'scale', 15, 'and a Living Relic'),
+    new CraftingRecipe('Houndsgall', 'Horns & Ivories', 'scale', 15, 'and a Living Relic'),
+    new CraftingRecipe('Stargall Ink', 'Inks of Containment', 'sky', 5),
+    new CraftingRecipe('Houndsgall', 'Inks of Containment', 'scale', 15, 'and a Living Relic'),
+    new CraftingRecipe('Houndsgall', 'Path & Pilgrim', 'scale', 15, 'and a Living Relic'),
+    new CraftingRecipe('Earthquake Name', 'Coil & Chasm', 'scale', 15, 'and an Old Moment'),
+    new CraftingRecipe('Earthquake Name', 'Stone Stories', 'scale', 15, 'and an Old Moment'),
+    new CraftingRecipe('Invincible Audacity', 'Edicts Martial', 'edge', 15, 'and a Winning Move'),
+    new CraftingRecipe('Invincible Audacity', 'Auroral Contemplations', 'edge', 15, 'and a Winning Move'),
+    new CraftingRecipe('Invincible Audacity', 'Disciplines of the Hammer', 'edge', 15, 'and a Winning Move'),
+    new CraftingRecipe('Didumos', 'Sights & Sensations', 'sky', 15, 'and an Ascendant Harmony'),
+    new CraftingRecipe('Didumos', 'Sacra Limiae', 'sky', 15, 'and an Ascendant Harmony'),
+    new CraftingRecipe('Didumos', 'Bells & Brazieries', 'sky', 15, 'and an Ascendant Harmony'),
+    new CraftingRecipe('Didumos', 'Applebright Euphonies', 'sky', 15, 'and an Ascendant Harmony'),
+    new CraftingRecipe('Didumos', 'Ouranoscopy', 'sky', 15, 'and an Ascendant Harmony'),
+    new CraftingRecipe('Dearday Lens', 'Pyroglyphics', 'Lantern', 5),
+    new CraftingRecipe('Westcott\'s Compounds', 'Pyroglyphics', 'forge', 5),
 
     new Recipe('Fear', 'Read Exorcism for Girls'),
     new Recipe('Foresight', 'Read Journal of Walter Dewulf'),
@@ -617,7 +641,7 @@ let recipes = [
     new Recipe('Impulse', 'Read Most Sorrowful End of the Lady Nonna'),
     new Recipe('Impulse', 'Read Book of Masks'),
     new Recipe('Intuition', 'Read Tripled Heart'),
-    new Recipe('Salt', 'Read Cucurbit Prisoner Records 1927'),
+    new Recipe('Salt', 'Read Cucurbit Prisoner Records 1928'),
     new Recipe('Hindsight', 'Read Seven Shards'),
     new Recipe('Revelation', 'Read Secret Colours'),
     new Recipe('Pattern', 'Read Radical Measure (glossed)'),
@@ -633,6 +657,7 @@ let recipes = [
     new Recipe('That Old Lost Music', 'Read Turquoise Hand'),
     new Recipe('Salt', 'Read Larquebine Codex'),
     new Recipe('Solace', 'Read Mirror of Melancthe'),
+    new Recipe('Satisfaction', 'Read Calicite Supplications'),
 
     new Recipe('Beeswax Candle', 'Chandlery with wax'),
     new Recipe('Moth-Orchid-Scented Candle', 'Chandlery with wax and moth orchid'),
